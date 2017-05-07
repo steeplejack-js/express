@@ -2,6 +2,8 @@
  * plugin
  */
 
+'use strict';
+
 /* Node modules */
 
 /* Third-party modules */

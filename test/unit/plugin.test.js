@@ -2,6 +2,8 @@
  * plugin.test
  */
 
+'use strict';
+
 /* Node modules */
 
 /* Third-party modules */

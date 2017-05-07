@@ -2,6 +2,8 @@
  * index
  */
 
+'use strict';
+
 /* Node modules */
 const EventEmitter = require('events').EventEmitter;
 const https = require('https');
