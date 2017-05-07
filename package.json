@@ -1,0 +1,51 @@
+{
+  "name": "@steeplejack/express",
+  "version": "1.0.0",
+  "description": "Express strategy for Steeplejack",
+  "main": "src/plugin",
+  "scripts": {
+    "postversion": "git push --tags && git push",
+    "test": "npm run test:lint -s && npm run test:unit -s",
+    "test:lint": "npm run test:lint:src -s && npm run test:lint:test -s",
+    "test:lint:src": "eslint src",
+    "test:lint:test": "eslint test",
+    "test:unit": "mocha --recursive --throw-deprecation --ui bdd --full-trace test/unit"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-classes": "^0.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "express": "^4.15.2",
+    "mocha": "^3.3.0",
+    "proxyquire": "^1.7.11",
+    "semistandard": "^11.0.0",
+    "sinon": "^2.2.0",
+    "sinon-chai": "^2.10.0",
+    "steeplejack": "^3.0.0"
+  },
+  "peerDependencies": {
+    "express": "*",
+    "steeplejack": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/steeplejack-js/express.git"
+  },
+  "keywords": [
+    "steeplejack",
+    "express"
+  ],
+  "author": "Simon Emms <simon@simonemms.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steeplejack-js/express/issues"
+  },
+  "homepage": "https://github.com/steeplejack-js/express#readme"
+}
