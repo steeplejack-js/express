@@ -15,12 +15,12 @@ const expressLib = require('express');
 /* Files */
 
 class Express extends EventEmitter {
-  constructor (opts = {}) {
+  constructor (opts) {
     super();
 
     this.inst = expressLib();
     this.listener = null;
-    this.opts = opts;
+    this.opts = opts || {};
   }
 
   /**
