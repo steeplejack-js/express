@@ -12,17 +12,13 @@ const expressLib = require('express');
 
 /* Files */
 
-/* Expose the Express library */
-exports.expressLib = expressLib;
-
-exports.Express = class Express extends EventEmitter {
-
+class Express extends EventEmitter {
   constructor (opts = {}) {
     super();
 
-    this._inst = expressLib();
-    this._listener = null;
-    this._opts = opts;
+    this.inst = expressLib();
+    this.listener = null;
+    this.opts = opts;
   }
 
   /**
@@ -39,7 +35,7 @@ exports.Express = class Express extends EventEmitter {
     const method = httpMethod.toLowerCase();
 
     this.getServer()[method](route, (req, res, next) => iterator(req, res)
-      .catch(err => {
+      .catch((err) => {
         next(err);
         throw err;
       }));
@@ -54,7 +50,7 @@ exports.Express = class Express extends EventEmitter {
    * @returns {Express}
    */
   close () {
-    this._listener.close();
+    this.listener.close();
 
     return this;
   }
@@ -78,7 +74,7 @@ exports.Express = class Express extends EventEmitter {
    * @returns {*|Function}
    */
   getServer () {
-    return this._inst;
+    return this.inst;
   }
 
   /**
@@ -111,7 +107,7 @@ exports.Express = class Express extends EventEmitter {
         /* Do the output */
         const format = {
           html: () => response.render(output.getRenderTemplate(), output.getRenderData()),
-          json: () => response.json(output.getRenderData())
+          json: () => response.json(output.getRenderData()),
         };
 
         return response.format(format);
@@ -120,6 +116,8 @@ exports.Express = class Express extends EventEmitter {
         return response.send(output);
       }
     }
+
+    return undefined;
   }
 
   /**
@@ -133,7 +131,7 @@ exports.Express = class Express extends EventEmitter {
   set () {
     const server = this.getServer();
 
-    server.set.apply(server, arguments);
+    server.set(...arguments);
 
     return this;
   }
@@ -155,13 +153,13 @@ exports.Express = class Express extends EventEmitter {
     return new Promise((resolve, reject) => {
       let factory;
 
-      if (_.isEmpty(this._opts.ssl)) {
+      if (_.isEmpty(this.opts.ssl)) {
         factory = this.getServer();
       } else {
-        factory = https.createServer(this._opts.ssl, this.getServer());
+        factory = https.createServer(this.opts.ssl, this.getServer());
       }
 
-      this._listener = factory.listen(port, hostname, backlog, (err, result) => {
+      this.listener = factory.listen(port, hostname, backlog, (err, result) => {
         if (err) {
           reject(err);
           return;
@@ -212,9 +210,18 @@ exports.Express = class Express extends EventEmitter {
   use () {
     const server = this.getServer();
 
-    server.use.apply(server, arguments);
+    server.use(...arguments);
 
     return this;
   }
+}
 
+/* Export */
+exports.default = () => ({
+  expressLib,
+  Express,
+});
+
+exports.inject = {
+  name: 'steeplejack-express',
 };
