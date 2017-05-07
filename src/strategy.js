@@ -133,7 +133,7 @@ class Express extends EventEmitter {
   set () {
     const server = this.getServer();
 
-    server.set(...arguments);
+    server.set.apply(server, arguments);
 
     return this;
   }
@@ -212,7 +212,7 @@ class Express extends EventEmitter {
   use () {
     const server = this.getServer();
 
-    server.use(...arguments);
+    server.use.apply(server, arguments);
 
     return this;
   }
