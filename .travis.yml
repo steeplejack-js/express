@@ -1,0 +1,30 @@
+language: node_js
+
+node_js:
+- '7'
+- '6'
+- '5'
+- '4'
+
+matrix:
+  fast_finish: true
+
+sudo: false
+
+deploy:
+  provider: npm
+  email: simon@simonemms.com
+  api_key:
+    secure: 4JH83HtDD9ix9J550EpnGhbazULiPc+49K/RRgTvdjfa/iKvXIrEPFk53Roq94ek7AFNOkIUWO0p3HnJ7tchm8OJiqWIP7zJbCIHWhYTAYi2cSdO1hXcq66s0vzjEyYIH05oDqSq0D86QQZOq1LYDcw2fTugJbTJCdm9wHwUgvMaKD2iSug61QhvfzmD4Zm38MkXYjA2JiiwbjNSjjYU4gjisxZpjsTMZlYhW5DcMaaNI0UMd1CXRXx2pK9sr7Iv+H2YHrBQiGscF3vsdI1PhQJU4Nud7x+AyddR7cwjzbFeTaTCMbHJqsWBJR5Y0ue3/Jr1jyVKvo4djO45LRDjuUyAsfj57LIak+4e4lYgesggtA0al9mtNFGwzeH3tOroJIvXX5H6uO0i7RhAdwcyvUzDwABxSFG3+sDTv25Gyu17hBNggekVvdlp/Th+HDOEU8R35v+GT8sh2o0XFWYpcX6GnWWw5hONsh6TU6YjSa9oLmOWJaN49PJcloJVAEu12SPC7prCr0Zxl9iFcud74y5uxq2eNqPKQKFwVtplXv0xhNJA1vJnUvXPNtqolV/U2nnBoBHNY0V5+BtcI8g4SeAuRoq1EZztZFvBSG7QNoaUXg3RfrBTWOgj7OZniRkp1gar/irl08IbIxzerHMf5a6T6EKVQvWtnESQ+WOTeWM=
+  on:
+      all_branches: true
+      tags: true
+      repo: steeplejack-js/express
+
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/d048e712b735c6cb4cf2
+    on_success: change
+    on_failure: always
+    on_start: false
