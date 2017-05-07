@@ -1,6 +1,6 @@
 {
   "name": "@steeplejack/express",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Express strategy for Steeplejack",
   "main": "src/plugin",
   "scripts": {
