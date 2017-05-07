@@ -12,6 +12,7 @@ const expressLib = require('express');
 
 /* Files */
 
+/* Expose the Express library */
 exports.expressLib = expressLib;
 
 exports.Express = class Express extends EventEmitter {
