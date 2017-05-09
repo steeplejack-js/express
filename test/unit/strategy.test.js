@@ -24,15 +24,20 @@ const expressLib = strategy.default().expressLib;
 describe('index test', function () {
   let Express;
   let exp;
+  let http;
   let https;
   beforeEach(function () {
     exp = sinon.stub();
+    http = {
+      createServer: sinon.stub(),
+    };
     https = {
       createServer: sinon.stub(),
     };
 
     const obj = proxyquire('../../src/strategy', {
       express: exp,
+      http,
       https,
     });
 
@@ -189,8 +194,9 @@ describe('index test', function () {
         const obj = new Express();
 
         obj.inst = 'some instance';
+        obj.listener = 'some listener';
 
-        expect(obj.getRawServer()).to.be.equal('some instance');
+        expect(obj.getRawServer()).to.be.equal('some listener');
       });
     });
 
@@ -402,6 +408,9 @@ describe('index test', function () {
           .yields(null, 'result');
 
         const stub = sinon.stub(obj, 'getServer')
+          .returns('serverInst');
+
+        http.createServer
           .returns({
             listen,
           });
@@ -412,6 +421,9 @@ describe('index test', function () {
 
             expect(stub).to.be.calledOnce
               .calledWithExactly();
+
+            expect(http.createServer).to.be.calledOnce
+              .calledWithExactly('serverInst');
 
             expect(listen).to.be.calledOnce
               .calledWith(8080, 'hostname', 12345);
@@ -461,6 +473,9 @@ describe('index test', function () {
           .yields('err');
 
         const stub = sinon.stub(obj, 'getServer')
+          .returns('serverInst');
+
+        http.createServer
           .returns({
             listen,
           });
@@ -474,6 +489,9 @@ describe('index test', function () {
 
             expect(stub).to.be.calledOnce
               .calledWithExactly();
+
+            expect(http.createServer).to.be.calledOnce
+              .calledWithExactly('serverInst');
 
             expect(listen).to.be.calledOnce
               .calledWith(9999, 'address', 512);

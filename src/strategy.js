@@ -6,6 +6,7 @@
 
 /* Node modules */
 const EventEmitter = require('events').EventEmitter;
+const http = require('http');
 const https = require('https');
 
 /* Third-party modules */
@@ -65,7 +66,7 @@ class Express extends EventEmitter {
    * @returns {*}
    */
   getRawServer () {
-    return this.getServer();
+    return this.listener;
   }
 
   /**
@@ -156,7 +157,7 @@ class Express extends EventEmitter {
       let factory;
 
       if (_.isEmpty(this.opts.ssl)) {
-        factory = this.getServer();
+        factory = http.createServer(this.getServer());
       } else {
         factory = https.createServer(this.opts.ssl, this.getServer());
       }
