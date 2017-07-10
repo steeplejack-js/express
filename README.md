@@ -1,6 +1,6 @@
 # Steeplejack Express
 
-[Express](http://expressjs.com) strategy for [Steeplejack](http://steeplejack.info)
+[Express](http://expressjs.com) strategy for [Steeplejack](http://getsteeplejack.com)
 
 # Usage
 
